@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
@@ -14,7 +14,8 @@ function App() {
 
   useEffect(() => {
     axios.get(`${URL}${query}`).then(res => {
-      setPokemons(res.data.cards);
+      const cards = res.data.cards.filter(card => card.supertype === "Pokémon")
+      setPokemons(cards);
     });
   }, []);
 
@@ -35,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);
