@@ -5,3 +5,15 @@
   border-radius: 1.5rem;
   max-width: 70rem;
 }
+
+.go-back {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  background: white;
+  font-size: 3rem;
+}
