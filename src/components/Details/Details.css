@@ -22,7 +22,19 @@
 .go-back {
   top: 1rem;
   left: 1rem;
-  border: 1px solid #333;
+  border: 2px solid #333;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  background: #fff;
+  font-size: 3rem;
+}
+
+.fav-button {
+  bottom: 1rem;
+  right: 1rem;
+  border: 2px solid orangered;
+  color: orangered;
   border-radius: 50%;
   width: 5rem;
   height: 5rem;
@@ -30,17 +42,10 @@
   font-size: 3rem;
 }
 
-
-.fav-button {
-  bottom: 1rem;
-  right: 1rem;
-  border: 1px solid orangered;
-  color: orangered;
-  border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
-  background: white;
-  font-size: 3rem;
+.black-btn {
+  color: #fff;
+  background: #333;
+  border-color: #333;
 }
 
 .section {

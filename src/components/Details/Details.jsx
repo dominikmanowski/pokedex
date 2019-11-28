@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 import { Link, withRouter } from 'react-router-dom';
 import { checkAvailability } from '../../utils/utils';
@@ -9,6 +10,15 @@ const Details = ({ pokemons, handleAddToFavorite, favorites, match }) => {
     () => pokemons.find(pokemon => pokemon.id === match.params.id),
     [pokemons, match]
   );
+
+  const isFavorite = useMemo(() => favorites.includes(pokemon.id), [
+    favorites,
+    pokemon.id,
+  ]);
+
+  const handleClick = () => {
+    handleAddToFavorite(pokemon.id);
+  };
 
   return (
     <>
@@ -48,11 +58,23 @@ const Details = ({ pokemons, handleAddToFavorite, favorites, match }) => {
             <p>Set: {checkAvailability(pokemon.set)}</p>
             <p>Subtype: {checkAvailability(pokemon.subtype)}</p>
           </div>
-          <button onClick={() => handleAddToFavorite(pokemon.id)} className="fav-button btn">&#9825;</button>
+          <button
+            onClick={handleClick}
+            className={`fav-button btn ${isFavorite && 'black-btn'}`}
+          >
+            &#10084;
+          </button>
         </div>
       )}
     </>
   );
+};
+
+Details.propTypes = {
+  pokemons: PropTypes.array,
+  handleAddToFavorite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.string),
+  match: PropTypes.object,
 };
 
 export default withRouter(Details);

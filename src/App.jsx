@@ -7,19 +7,20 @@ import Deck from './components/Deck/Deck';
 import Details from './components/Details/Details';
 
 import { URL } from './constants';
+const query = 'cards?supertype=pokemon';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  console.log('TCL: App -> favorites', favorites);
 
   const handleAddToFavorite = id => {
-    if (favorites.includes(id)) {
-      setFavorites(pokemons.find(pokemon => pokemon.id === id));
+    const favPokemon = pokemons.find(pokemon => pokemon.id === id);
+    if (!favorites.includes(id)) {
+      setFavorites(prevState => [...prevState, favPokemon.id]);
+      return;
     }
+    setFavorites(prevState => prevState.filter(prevId => prevId !== id));
   };
-
-  const query = 'cards?supertype=pokemon/';
 
   useEffect(() => {
     axios
@@ -39,7 +40,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
-              <Deck pokemons={pokemons} />
+              <Deck pokemons={pokemons} favorites={favorites} />
             </Route>
             <Route path="/pokemon/:id">
               <Details

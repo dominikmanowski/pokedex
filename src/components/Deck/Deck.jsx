@@ -5,7 +5,7 @@ import Loader from '../Loader/Loader';
 import { filterPokemons } from '../../utils/utils';
 import './Deck.css';
 
-const Deck = ({ pokemons }) => {
+const Deck = ({ pokemons = [], favorites }) => {
   const [searchQuery, setSearchQuery] = useState([]);
 
   const handleSearch = e => {
@@ -19,10 +19,10 @@ const Deck = ({ pokemons }) => {
       {showSpinner && <Loader />}
       {!!pokemons.length && (
         <>
-          <input type="text" className='search-bar' onChange={handleSearch} />
+          <input type="text" className="search-bar" onChange={handleSearch} />
           <div className="container">
             {filterPokemons(pokemons, searchQuery).map(pokemon => (
-              <Card pokemon={pokemon} key={pokemon.id} />
+              <Card pokemon={pokemon} key={pokemon.id} favorites={favorites} />
             ))}
           </div>
         </>
