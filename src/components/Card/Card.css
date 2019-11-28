@@ -6,8 +6,13 @@
   border: 1px solid #333;
   border-radius: 15px;
   margin-bottom: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.3rem;
 }
 
 .name {
+  font-weight: 400;
   margin:0 0 1rem 0;
+  color: #333;
 }
