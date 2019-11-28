@@ -1,21 +1,35 @@
-import React, { useMemo, memo } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import Loader from '../Loader/Loader';
+import { filterPokemons } from '../../utils/utils';
 import './Deck.css';
 
 const Deck = ({ pokemons }) => {
+  const [searchQuery, setSearchQuery] = useState([]);
+
+  const handleSearch = e => {
+    setSearchQuery(e.target.value);
+  };
+
   const showSpinner = useMemo(() => pokemons && !pokemons.length, [pokemons]);
+
   return (
     <div className="deck">
-      <div className="container">
-        {showSpinner && <Loader />}
-        {pokemons &&
-          pokemons.map(pokemon => <Card pokemon={pokemon} key={pokemon.id} />)}
-      </div>
+      {showSpinner && <Loader />}
+      {!!pokemons.length && (
+        <>
+          <input type="text" className='search-bar' onChange={handleSearch} />
+          <div className="container">
+            {filterPokemons(pokemons, searchQuery).map(pokemon => (
+              <Card pokemon={pokemon} key={pokemon.id} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
-}
+};
 
 Deck.propTypes = {
   pokemons: PropTypes.array,
