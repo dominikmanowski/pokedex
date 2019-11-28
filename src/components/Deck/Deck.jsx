@@ -1,21 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Card from "../Card/Card";
-import "./Deck.css"
+import React, { useMemo, memo } from 'react';
+import PropTypes from 'prop-types';
+import Card from '../Card/Card';
+import Loader from '../Loader/Loader';
+import './Deck.css';
 
-function Deck({ pokemons }) {
+const Deck = ({ pokemons }) => {
+  const showSpinner = useMemo(() => pokemons && !pokemons.length, [pokemons]);
   return (
     <div className="deck">
       <div className="container">
-        {!pokemons.length && <p>Loading...</p>}
-        {pokemons && pokemons.map(pokemon => <Card pokemon={pokemon} key={pokemon.id}/>)}
+        {showSpinner && <Loader />}
+        {pokemons &&
+          pokemons.map(pokemon => <Card pokemon={pokemon} key={pokemon.id} />)}
       </div>
     </div>
   );
 }
 
 Deck.propTypes = {
-  pokemons: PropTypes.array
+  pokemons: PropTypes.array,
 };
 
-export default Deck;
+export default memo(Deck);
