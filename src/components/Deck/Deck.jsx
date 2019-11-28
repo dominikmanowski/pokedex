@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Card/Card";
+import "./Deck.css"
 
 function Deck({ pokemons }) {
-
   return (
     <div className="deck">
-       {pokemons && pokemons.map(pokemon => <Card pokemon={pokemon} />)}
+      <div className="container">
+        {!pokemons.length && <p>Loading...</p>}
+        {pokemons && pokemons.map(pokemon => <Card pokemon={pokemon} key={pokemon.id}/>)}
+      </div>
     </div>
   );
 }
