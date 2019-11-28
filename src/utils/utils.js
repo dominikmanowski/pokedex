@@ -6,3 +6,10 @@ export const filterPokemons = (arr, query) => {
     (subtype && subtype.toLowerCase().includes(query))
   );
 };
+
+export const checkAvailability = (input) => {
+  if (!input) {
+    return "N/A"
+  }
+  return input
+}

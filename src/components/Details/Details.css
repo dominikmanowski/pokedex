@@ -1,6 +1,7 @@
 .detail-box {
+  display: flex;
   margin: 3rem auto 0;
-  padding: 3rem;
+  padding: 1rem 2rem;
   border: 1px solid black;
   border-radius: 1.5rem;
   max-width: 70rem;
@@ -16,4 +17,9 @@
   height: 5rem;
   background: white;
   font-size: 3rem;
+}
+
+.section {
+  margin: 1rem;
+  font-size: 1.6rem;
 }
