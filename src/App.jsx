@@ -9,6 +9,15 @@ import { URL } from './constants';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [favorites, setFavorites] = useState([])
+  console.log("TCL: App -> favorites", favorites)
+
+  const handleAddToFavorite = (id) => {
+    if (favorites.includes(id)) {
+      setFavorites(pokemons.find(pokemon => pokemon.id === id))
+    }
+    
+  }
 
   const query = 'cards';
 
@@ -28,7 +37,7 @@ function App() {
             <Deck pokemons={pokemons} />
           </Route>
           <Route path="/pokemon/:id">
-            <Details pokemons={pokemons} />
+            <Details pokemons={pokemons} handleAddToFavorite={handleAddToFavorite} favorites={favorites}/>
           </Route>
         </Switch>
       </Router>

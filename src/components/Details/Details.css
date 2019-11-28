@@ -1,5 +1,6 @@
 .detail-box {
   display: flex;
+  position: relative;
   margin: 3rem auto 0;
   padding: 1rem 2rem;
   border: 1px solid black;
@@ -7,11 +8,34 @@
   max-width: 70rem;
 }
 
-.go-back {
+.btn {
   position: absolute;
+  outline: none;
+  transform: scale(0.95);
+  transition: all .2s ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1);
+}
+
+.go-back {
   top: 1rem;
   left: 1rem;
-  border: 1px solid black;
+  border: 1px solid #333;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  background: white;
+  font-size: 3rem;
+}
+
+
+.fav-button {
+  bottom: 1rem;
+  right: 1rem;
+  border: 1px solid orangered;
+  color: orangered;
   border-radius: 50%;
   width: 5rem;
   height: 5rem;

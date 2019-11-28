@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { checkAvailability } from '../../utils/utils';
 import './Details.css';
 
-const Details = ({ pokemons, match }) => {
+const Details = ({ pokemons, handleAddToFavorite, favorites, match }) => {
   const pokemon = useMemo(
     () => pokemons.find(pokemon => pokemon.id === match.params.id),
     [pokemons, match]
@@ -13,7 +13,7 @@ const Details = ({ pokemons, match }) => {
   return (
     <>
       <Link to="/">
-        <button className="go-back">&#x21A9;</button>
+        <button className="go-back btn">&#x21A9;</button>
       </Link>
       {!pokemon && <Loader />}
       {pokemon && (
@@ -48,6 +48,7 @@ const Details = ({ pokemons, match }) => {
             <p>Set: {checkAvailability(pokemon.set)}</p>
             <p>Subtype: {checkAvailability(pokemon.subtype)}</p>
           </div>
+          <button onClick={() => handleAddToFavorite(pokemon.id)} className="fav-button btn">&#9825;</button>
         </div>
       )}
     </>
