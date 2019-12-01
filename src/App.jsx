@@ -36,7 +36,7 @@ function App() {
   return (
     <>
       <ErrorBoundaries>
-        <Header />
+        <Header title="Pokedex" />
         <Router>
           <Switch>
             <Route exact path="/">
