@@ -1,17 +1,15 @@
-import React, { useState, useEffect, memo } from 'react';
-import axios from 'axios';
+import React, { useState, useContext, memo } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ErrorBoundaries from './components/ErrorBoundaries/ErrorBoundaries';
+import { PokemonsContext } from './PokemonsContext';
 import Header from './components/Header/Header';
 import Deck from './components/Deck/Deck';
 import Details from './components/Details/Details';
 
-import { URL } from './constants';
-const query = 'cards?supertype=pokemon';
-
 function App() {
-  const [pokemons, setPokemons] = useState([]);
   const [favorites, setFavorites] = useState([]);
+
+  const pokemons = useContext(PokemonsContext);
 
   const handleAddToFavorite = id => {
     const favPokemon = pokemons.find(pokemon => pokemon.id === id);
@@ -22,17 +20,6 @@ function App() {
     setFavorites(prevState => prevState.filter(prevId => prevId !== id));
   };
 
-  useEffect(() => {
-    axios
-      .get(`${URL}${query}`)
-      .then(res => {
-        setPokemons(res.data.cards);
-      })
-      .catch(error => {
-        throw new Error(error);
-      });
-  }, []);
-
   return (
     <>
       <ErrorBoundaries>
@@ -40,11 +27,10 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
-              <Deck pokemons={pokemons} favorites={favorites} />
+              <Deck favorites={favorites} />
             </Route>
             <Route path="/pokemon/:id">
               <Details
-                pokemons={pokemons}
                 handleAddToFavorite={handleAddToFavorite}
                 favorites={favorites}
               />

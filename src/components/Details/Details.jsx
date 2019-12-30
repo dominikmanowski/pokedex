@@ -1,24 +1,26 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 import { Link, withRouter } from 'react-router-dom';
 import { checkAvailability } from '../../utils/utils';
 import './Details.css';
+import { PokemonsContext } from '../../PokemonsContext';
 
-const Details = ({ pokemons, handleAddToFavorite, favorites, match }) => {
+const Details = ({ handleAddToFavorite, favorites, match }) => {
+  const pokemons = useContext(PokemonsContext);
   const pokemon = useMemo(
-    () => pokemons.find(pokemon => pokemon.id === match.params.id),
+    () => pokemons?.find(pokemon => pokemon.id === match.params.id),
     [pokemons, match]
   );
 
-  const isFavorite = useMemo(() => favorites.includes(pokemon.id), [
+  const isFavorite = useMemo(() => favorites?.includes(pokemon?.id), [
     favorites,
-    pokemon.id,
+    pokemon,
   ]);
 
-  const handleClick = () => {
-    handleAddToFavorite(pokemon.id);
-  };
+  const handleClick = useCallback(() => {
+    handleAddToFavorite(pokemon?.id);
+  }, [handleAddToFavorite, pokemon]);
 
   return (
     <>
