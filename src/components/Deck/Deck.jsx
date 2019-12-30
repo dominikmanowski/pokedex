@@ -9,7 +9,6 @@ import { PokemonsContext } from '../../PokemonsContext';
 const Deck = ({ favorites }) => {
   const [searchQuery, setSearchQuery] = useState([]);
   const pokemons = useContext(PokemonsContext);
-  console.log("TCL: Deck -> pokemons", pokemons)
 
   const handleSearch = e => {
     setSearchQuery(e.target.value);
