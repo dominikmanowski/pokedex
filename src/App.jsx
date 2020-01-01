@@ -1,4 +1,4 @@
-import React, { useState, useContext, memo } from 'react';
+import React, { useState, useContext, memo, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ErrorBoundaries from './components/ErrorBoundaries/ErrorBoundaries';
 import { PokemonsContext } from './PokemonsContext';
@@ -7,9 +7,15 @@ import Deck from './components/Deck/Deck';
 import Details from './components/Details/Details';
 
 function App() {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    localStorage.getItem('favoritePokemons') ?? []
+  );
 
   const pokemons = useContext(PokemonsContext);
+
+  useEffect(() => {
+    localStorage.setItem('favoritePokemons', favorites);
+  }, [favorites]);
 
   const handleAddToFavorite = id => {
     const favPokemon = pokemons.find(pokemon => pokemon.id === id);
