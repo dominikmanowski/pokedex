@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './Card.css';
+import styles from './Card.module.css';
 
 const Card = ({
   pokemon = { name: 'Unknown', imageUrl: 'none', id: null },
@@ -13,9 +13,9 @@ const Card = ({
 
   return (
     <div>
-      <Link to={`/pokemon/${id}`} className="card-container">
-        {isFavorite && <span className="favorite">&#10084;</span>}
-        <h2 className="name">{name}</h2>
+      <Link to={`/pokemon/${id}`} className={styles.cardContainer}>
+        {isFavorite && <span className={styles.favorite}>&#10084;</span>}
+        <h2 className={styles.name}>{name}</h2>
         <img src={imageUrl} alt={name} />
       </Link>
     </div>

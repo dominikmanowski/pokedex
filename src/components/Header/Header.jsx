@@ -1,10 +1,10 @@
 import React from 'react';
-import './Header.css';
+import styles from './Header.module.css';
 
 export default function Header({ title }) {
   return (
-    <header className="header">
-      <h1 className="heading">{title}</h1>
+    <header className={styles.header}>
+      <h1 className={styles.heading}>{title}</h1>
     </header>
   );
 }

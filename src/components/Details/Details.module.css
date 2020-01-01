@@ -1,7 +1,7 @@
-.detail-box {
+.detailBox {
   display: flex;
   position: relative;
-  margin: 3rem auto 0;
+  margin: 0 auto 3rem;
   padding: 1rem 2rem;
   border: 1px solid black;
   border-radius: 1.5rem;
@@ -19,7 +19,7 @@
   transform: scale(1);
 }
 
-.go-back {
+.goBack {
   top: 1rem;
   left: 1rem;
   border: 2px solid #333;
@@ -30,7 +30,7 @@
   font-size: 3rem;
 }
 
-.fav-button {
+.favButton {
   bottom: 1rem;
   right: 1rem;
   border: 2px solid orangered;
@@ -42,7 +42,7 @@
   font-size: 3rem;
 }
 
-.black-btn {
+.blackBtn {
   color: #fff;
   background: #333;
   border-color: #333;

@@ -1,9 +1,10 @@
 import React, { useMemo, useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Loader from '../Loader/Loader';
 import { Link, withRouter } from 'react-router-dom';
 import { checkAvailability } from '../../utils/utils';
-import './Details.css';
+import styles from './Details.module.css';
 import { PokemonsContext } from '../../PokemonsContext';
 
 const Details = ({ handleAddToFavorite, favorites, match }) => {
@@ -25,16 +26,18 @@ const Details = ({ handleAddToFavorite, favorites, match }) => {
   return (
     <>
       <Link to="/">
-        <button className="go-back btn">&#x21A9;</button>
+        <button className={classNames(styles.goBack, styles.btn)}>
+          &#x21A9;
+        </button>
       </Link>
       {!pokemon && <Loader />}
       {pokemon && (
-        <div className="detail-box">
-          <div className="section">
-            <h2 className="name">{pokemon.name}</h2>
+        <div className={styles.detailBox}>
+          <div className={styles.section}>
+            <h2 className={styles.name}>{pokemon.name}</h2>
             <img src={pokemon.imageUrl} alt={pokemon.name} />
           </div>
-          <div className="section">
+          <div className={styles.section}>
             <p>HP: {checkAvailability(pokemon.hp)}</p>
             <p>Nr: {checkAvailability(pokemon.number)}</p>
             <p>Artist: {checkAvailability(pokemon.artist)}</p>
@@ -54,7 +57,7 @@ const Details = ({ handleAddToFavorite, favorites, match }) => {
               </>
             </div>
           </div>
-          <div className="section">
+          <div className={styles.section}>
             <p>Series: {checkAvailability(pokemon.series)}</p>
             <p>Evolves from: {checkAvailability(pokemon.evolvesFrom)}</p>
             <p>Set: {checkAvailability(pokemon.set)}</p>
@@ -62,7 +65,9 @@ const Details = ({ handleAddToFavorite, favorites, match }) => {
           </div>
           <button
             onClick={handleClick}
-            className={`fav-button btn ${isFavorite && 'black-btn'}`}
+            className={classNames(styles.favButton, styles.btn, {
+              [styles.blackBtn]: isFavorite,
+            })}
           >
             &#10084;
           </button>
