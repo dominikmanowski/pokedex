@@ -84,7 +84,7 @@ const Deck = ({ favorites }) => {
 
 Deck.propTypes = {
   pokemons: PropTypes.array,
-  favorites: PropTypes.arrayOf(PropTypes.number),
+  favorites: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default memo(Deck);
