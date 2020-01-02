@@ -6,15 +6,15 @@ import Header from './components/Header/Header';
 import Deck from './components/Deck/Deck';
 import Details from './components/Details/Details';
 
-function App() {
+const App = () => {
   const [favorites, setFavorites] = useState(
-    localStorage.getItem('favoritePokemons') ?? []
+    JSON.parse(localStorage.getItem('favoritePokemons')) ?? []
   );
 
   const pokemons = useContext(PokemonsContext);
 
   useEffect(() => {
-    localStorage.setItem('favoritePokemons', favorites);
+    favorites && localStorage.setItem('favoritePokemons', JSON.stringify(favorites));
   }, [favorites]);
 
   const handleAddToFavorite = id => {
