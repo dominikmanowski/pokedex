@@ -14,7 +14,9 @@ const App = () => {
   const pokemons = useContext(PokemonsContext);
 
   useEffect(() => {
-    favorites && localStorage.setItem('favoritePokemons', JSON.stringify(favorites));
+    favorites.length
+      ? localStorage.setItem('favoritePokemons', JSON.stringify(favorites))
+      : localStorage.removeItem('favoritePokemons');
   }, [favorites]);
 
   const handleAddToFavorite = id => {
